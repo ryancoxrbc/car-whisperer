@@ -70,6 +70,7 @@ python -m carwhisperer ident                    # identification of the engine E
 python -m carwhisperer dtc                      # fault codes with status, never cleared
 python -m carwhisperer live                     # engine speed, coolant, battery voltage
 python -m carwhisperer sweep --start 1000 --end 10FF
+python -m carwhisperer watch --did-file dids.txt --out log.csv   # log a list of identifiers over time
 python -m carwhisperer capture --out idle.json  # passive: record the engine-speed frame
 python -m carwhisperer analyze examples/idle_rpm_frames.json --plots out/
 ```
@@ -79,9 +80,9 @@ The adapter is found by its advertised name, `VEEPEAK`. Use `--address` or the
 
 The protocol was worked out with throwaway scripts, and this package is the cleaned-up
 version of them. The offline tests pass (`python -m unittest discover -s tests`), and
-`analyze` reproduces the published numbers from the example capture. The hardware commands
-have **not been re-run against the car since the clean-up**, so treat the first run of each as
-a test.
+`analyze` reproduces the published numbers from the example capture. Of the hardware commands,
+`live`, `sweep` and `watch` have been run against the car since the clean-up. The others have
+not, so treat the first run of each as a test.
 
 ## Sources
 

@@ -48,7 +48,6 @@ Read with `22 xxxx` from the engine ECU.
 | `1000` engine speed | 0 rpm | 795 to 806 rpm | 707 to 727 rpm |
 | `1003` coolant temperature | 62 °C | 62 to 66 °C | 93 to 95 °C |
 | `1004` battery voltage | 12.3 V | 14.2 to 14.3 V | 14.2 to 14.3 V |
-| `1009` unidentified | 77 raw | 98 to 102 raw | 161 to 163 raw |
 
 Polling four identifiers over BLE gives about one complete set every two seconds.
 

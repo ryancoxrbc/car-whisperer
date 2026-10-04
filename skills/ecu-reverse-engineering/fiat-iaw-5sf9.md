@@ -43,7 +43,9 @@ Then send raw single frames: length byte, then the UDS request.
 | `1004` | Battery voltage | raw / 10 V |
 | `F40C` | Stub, always zero | |
 
-Seen in a fault snapshot and worth sweeping next: `1812`, `1924`, `1937`, `6082`.
+More live data sits in `1800` to `19FF`: 100 identifiers answer there. `186B` is the idle
+speed target (raw / 4 rpm), `181F` is likely manifold pressure in mbar, `1898` likely the
+oxygen sensor voltage in mV. See `docs/protocol.md` in the repository.
 
 ## Broadcast frames
 

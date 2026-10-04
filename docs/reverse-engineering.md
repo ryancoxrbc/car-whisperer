@@ -179,8 +179,8 @@ data. The snapshot is worth reading closely, because it names data identifiers:
 ```
 
 Nine identifier and value pairs. Four of those identifiers (`6082`, `1924`, `1937`, `1812`)
-sit in ranges that the sweeps below never covered. That makes `1800` to `19FF` the obvious
-place to look next for live data.
+sit in ranges that the sweeps below never covered. That pointed at `1800` to `19FF`, and a later
+sweep found 100 identifiers there. See [protocol.md](protocol.md).
 
 ## 10. Finding live data
 

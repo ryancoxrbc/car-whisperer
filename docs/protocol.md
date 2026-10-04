@@ -84,8 +84,8 @@ Refused with `7F 22 31`: `F188`, `F189`, `F18A`, `F18B`, `F191`, `F197`, `F198`,
 | `1002` | 2 | Unknown, 0 at idle | | |
 | `1003` | 2 | Coolant temperature | raw − 40 °C | Tracks broadcast `0A18A001` byte 3. Offset assumed. |
 | `1004` | 2 | Battery voltage | raw / 10 V | Confirmed against the adapter's voltmeter |
-| `1008` | 4 | Counter that climbs slowly, about 5 counts in 11 minutes | unknown | Observed |
-| `1009` | 2 | Rises with warm-up, 77 to 163 | unknown | Observed. It is not coolant. |
+| `1008` | 4 | Counter, about +1 per minute while running | Possibly engine running time in minutes | Observed |
+| `1009` | 2 | Timer since engine start, about +1 per 15 s | unknown unit | Observed. Reads 1 just after a start. |
 | `2000` | 2 | Static, `0010` | | Observed |
 | `2001` | 3 | Static, `15C3D6` | | Observed |
 | `2002` to `2007` | 1 to 3 | Static, zero | | Observed |
@@ -98,8 +98,44 @@ Refused with `7F 22 31`: `F188`, `F189`, `F18A`, `F18B`, `F191`, `F197`, `F198`,
 | `2010` | 4 | `FFFFFFFF` | | Observed |
 | `F40C` | 2 | Always zero | | A stub. The `F4xx` OBD mirror is not implemented. |
 
-Identifiers named inside a DTC snapshot record and **not yet read directly**: `6082`, `1924`,
-`1937`, `1812`. The `1800` to `19FF` range is the best candidate for more live data.
+Identifier `6082` appears in a DTC snapshot record and has not been read directly.
+
+## Live data block, `1800` to `19FF`
+
+The DTC snapshot named identifiers in this range, and a sweep found 100 that answer
+([log](../examples/logs/09-did-sweep-1800-19FF.log)). All 100 were then logged 19 times over
+four minutes at idle while the engine warmed from 73 to 82 °C, with the air conditioning
+switched on for about 45 seconds in the middle. Meanings below come from how each value
+behaved. "Confirmed" means it matched an independent reading.
+
+| DID | Idle | With A/C load | Meaning | Basis |
+|---|---|---|---|---|
+| `186B` | 2800 | 3400 | Idle speed target, raw / 4 rpm: 700 rpm, 850 rpm with A/C | Confirmed. Engine speed `1000` follows it one sample later. |
+| `1956` | 845 | 845 | Barometric pressure, mbar | Likely. Static and plausible for the altitude. |
+| `181F` | 280 | 450 | Intake manifold pressure, mbar | Likely. Tracks load. |
+| `197D`, `197E` | 141 | 141 | Battery voltage, raw / 10 V | Confirmed against `1004` |
+| `1898`, `189A` | 60 to 800 | same | Oxygen sensor voltage, mV | Likely. Swings between lean and rich. |
+| `1875`, `1876` | 02 or 08 | same | Mixture state flags, toggling | Likely |
+| `1811`, `1812` | +50 | −37 to −70 | Signed. Possibly ignition advance in 0.1° | Guess |
+| `1824`, `18BC` | −23 | +60 to +88 | Signed. Idle torque or airflow correction | Guess |
+| `1804`, `1805`, `1931` | 02, 02, 0000 | 40, 01, 1802 | Status flags that change with the A/C request | Observed |
+| `1802`, `1862`, `1863` | 32 | 56 to 72 | Load or torque, percent | Guess |
+| `1937`, `1938` | 275, 227 | 465, 390 | Load-related | Observed |
+| `1942` | 250 | 555 | Load-related, possibly injection time | Guess |
+| `18A6`, `18AD`, `18AE`, `18B1`, `186A`, `1817`, `181D`, `192F`, `18A7`, `1864` | | rise | Load-related | Observed |
+| `1865` | 912 | 875 | Falls with load | Observed |
+| `1936` | 320 to 338 | | Rises with warm-up | Observed |
+| `1934`, `1935` | 326 to 270, 88 to 85 | | Fall with warm-up | Observed |
+| `194F` | 101 to 108 | | Rises steadily with time | Observed |
+| `18A0`, `18A2`, `18A3`, `18A4` | 988, 1012, 1026, 1001 | each +14 | Four values around 1000 with fixed offsets between them. Possibly per cylinder. | Guess |
+| `1891` to `1894` | 46 to 71 each | | Four fluctuating values. Possibly per cylinder. | Guess |
+| `1966` to `196B` | | | Static, ascending. Looks like table breakpoints. | Observed |
+
+Another 42 identifiers in the block were static throughout.
+
+One pass over 105 identifiers takes 14.4 seconds, so anything faster than that is undersampled.
+The oxygen sensor readings in particular are snapshots of a signal that switches several times
+per second.
 
 Ranges swept with no hits: `0200`-`03FF`, `1010`-`11FF`, `2011`-`22FF`, `3000`-`30FF`,
 `4000`-`40FF`, `F000`-`F0FF`. Within `F100`-`F1FF` only the identification identifiers above.

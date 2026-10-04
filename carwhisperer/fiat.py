@@ -18,7 +18,8 @@ LIVE_DIDS = {
     0x1000: ("engine speed", "rpm", lambda v: v / 4, "confirmed against the CAN broadcast"),
     0x1003: ("coolant temperature", "°C", lambda v: v - 40, "matches the broadcast byte; offset assumed"),
     0x1004: ("battery voltage", "V", lambda v: v / 10, "confirmed against the adapter's voltmeter"),
-    0x1009: ("unidentified temperature", "raw", lambda v: v, "rises during warm-up; scaling unknown"),
+    0x186B: ("idle speed target", "rpm", lambda v: v / 4, "engine speed follows it; rises with A/C load"),
+    0x181F: ("manifold pressure", "mbar", lambda v: v, "likely; tracks load"),
 }
 
 # Broadcast frames on the C-CAN bus (29-bit, 500 kbps). The last byte of the ID is the sender.

@@ -130,6 +130,34 @@ async def cmd_sweep(elm, args):
     print(f"{hits} DIDs answered in {args.start:04X}-{args.end:04X}")
 
 
+async def cmd_watch(elm, args):
+    """Poll a list of DIDs repeatedly and write every reading to a CSV file."""
+    import re
+    dids = []
+    with open(args.did_file) as fh:
+        for line in fh:                                      # accepts plain hex or lines of sweep output
+            m = re.match(r"\s*([0-9A-Fa-f]{4})\b", line)
+            if m and int(m.group(1), 16) not in dids:
+                dids.append(int(m.group(1), 16))
+    await elm.init()
+    u = Uds(elm, args.target)
+    await u.setup()
+    await elm.cmd("ATST19")
+    start, rounds = time.time(), 0
+    with open(args.out, "w") as out:
+        out.write("seconds," + ",".join(f"{d:04X}" for d in dids) + "\n")
+        while time.time() - start < args.seconds:
+            row = [f"{time.time() - start:.1f}"]
+            for did in dids:
+                data = await u.read_did(did, timeout=1.5)
+                row.append(data[3:].hex().upper() if positive(data) else "")
+            out.write(",".join(row) + "\n")
+            out.flush()
+            rounds += 1
+            print(f"  round {rounds} at {row[0]} s", flush=True)
+    print(f"{rounds} rounds of {len(dids)} DIDs saved to {args.out}")
+
+
 async def cmd_capture(elm, args):
     """Record one broadcast frame passively and save the raw data bytes as JSON."""
     await elm.init()
@@ -179,6 +207,10 @@ def main(argv=None):
     s.add_argument("--seconds", type=float, default=20)
     s = sub.add_parser("sweep", help=cmd_sweep.__doc__)
     s.add_argument("--target", type=hexint, default=0x10); s.add_argument("--start", type=hexint, required=True); s.add_argument("--end", type=hexint, required=True)
+    s = sub.add_parser("watch", help=cmd_watch.__doc__)
+    s.add_argument("--did-file", required=True, help="hex DIDs, one per line; sweep output works as is")
+    s.add_argument("--target", type=hexint, default=0x10); s.add_argument("--seconds", type=float, default=300)
+    s.add_argument("--out", default="watch.csv")
     s = sub.add_parser("capture", help=cmd_capture.__doc__)
     s.add_argument("--id", default=fiat.RPM_FRAME); s.add_argument("--seconds", type=float, default=10)
     s.add_argument("--bursts", type=int, default=6); s.add_argument("--out", default="capture.json")
