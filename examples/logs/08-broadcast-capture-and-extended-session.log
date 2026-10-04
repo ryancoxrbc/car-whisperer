@@ -1,0 +1,44 @@
+> ATZ            -> 'ELM327 v2.2'
+> ATE0           -> 'OK'
+> ATL0           -> 'OK'
+> ATS0           -> 'OK'
+> ATH1           -> 'OK'
+> ATSP7          -> 'OK'
+> ATCAF0         -> 'OK'
+> ATCSM1         -> 'OK'
+> ATRV           -> '14.3V'
+
+##### A. passive engine-speed broadcast 0618A001, 6 x 10 s, raw frames saved
+  burst 0: n= 998 (100/s) min=705 max=728 mean=716 sd=3.9  sample-to-sample drops >=30rpm: 0, >=60rpm: 0
+  burst 1: n= 999 (100/s) min=700 max=725 mean=714 sd=4.5  sample-to-sample drops >=30rpm: 0, >=60rpm: 0
+  burst 2: n= 998 (100/s) min=706 max=725 mean=716 sd=3.9  sample-to-sample drops >=30rpm: 0, >=60rpm: 0
+  burst 3: n= 999 (100/s) min=704 max=724 mean=715 sd=4.0  sample-to-sample drops >=30rpm: 0, >=60rpm: 0
+  burst 4: n=1001 (100/s) min=700 max=726 mean=716 sd=4.0  sample-to-sample drops >=30rpm: 0, >=60rpm: 0
+  burst 5: n=1000 (100/s) min=705 max=730 mean=716 sd=4.8  sample-to-sample drops >=30rpm: 0, >=60rpm: 0
+  overall: n=5995 min=700 max=730 mean=716 sd=4.3
+  rpm histogram (10 rpm bins):
+     700: ##### 438
+     710: ############################################################ 4414
+     720: ############### 1139
+     730: # 4
+  samples below 700 rpm: 0, longest consecutive run: 0
+  non-rpm bytes distinct patterns: [('0011131A7300', 2458), ('0012131A7300', 1314), ('0010131A7300', 1272), ('0010131A7400', 334), ('0011131A7400', 319)]
+
+##### B. passive 0A18A001 for 10 s: per-byte value ranges
+  byte0: min=1 max=1 distinct=1
+  byte1: min=0 max=0 distinct=1
+  byte2: min=128 max=128 distinct=1
+  byte3: min=135 max=136 distinct=2
+  byte4: min=0 max=0 distinct=1
+  byte5: min=200 max=222 distinct=11
+  byte6: min=22 max=23 distinct=2
+  byte7: min=0 max=0 distinct=1
+
+##### C. extended session 10 03 and re-sweep 1000-10FF / 2000-20FF for newly unlocked DIDs
+  F186 before: 62F18601  'b...'
+  10 03 -> 5003003201F4  'P..2..'
+  F186 after : 62F18603  'b...'
+  NEW F40C -> 0000
+  newly unlocked DIDs: 1
+  10 01 (back to default) -> 5001003201F4  'P..2..'
+  F186 final : 62F18601  'b...'

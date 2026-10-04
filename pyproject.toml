@@ -1,0 +1,21 @@
+[project]
+name = "carwhisperer"
+version = "0.1.0"
+description = "Read-only diagnostics for a non-EOBD Fiat Grande Punto ECU through an ELM327 BLE adapter"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = ["bleak>=0.22"]
+
+[project.optional-dependencies]
+analysis = ["numpy", "matplotlib"]
+
+[project.scripts]
+carwhisperer = "carwhisperer.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["carwhisperer"]

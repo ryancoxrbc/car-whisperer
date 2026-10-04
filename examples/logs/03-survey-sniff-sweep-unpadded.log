@@ -1,0 +1,86 @@
+> ATZ            -> 'ELM327 v2.2'
+> ATE0           -> 'OK'
+> ATL0           -> 'OK'
+> ATS0           -> 'OK'
+> ATH1           -> 'OK'
+> ATRV           -> '12.4V'
+
+##### A. Adapter programmable-parameter dump (read-only)
+> ATPPS          -> '00:FF F  01:FF F  02:FF F  03:32 F\n04:01 F  05:FF F  06:F1 F  07:09 F\n08:FF F  09:00 F  0A:0A F  0B:FF F\n0C:68 F  0D:0D F  0E:FF F  0F:FF F\n10:0D F  11:00 F  12:FF F  13:32 F\n14:FF F  15:FF F  16:FF F  17:92 F\n18:00 F  19:FF F  1A:FF F  1B:FF F\n1C:FF F  1D:FF F  1E:FF F  1F:FF F\n20:FF F  21:FF F  22:FF F  23:FF F\n24:00 F  25:00 F  26:00 F  27:FF F\n28:FF F  29:FF F  2A:FF F  2B:02 F\n2C:01 N  2D:01 N  2E:80 F  2F:0A F'
+
+##### B. Passive capture, 29-bit 500k, 8 bursts of 1.5 s
+> ATSP7          -> 'OK'
+> ATCAF0         -> 'OK'
+> ATCSM1         -> 'OK'
+  frames: 80, distinct IDs: 10
+  0030A002 x9    data: BF05F0D1C3413E8D | BF05F0D1C3413E8E | BF05F0D1C3413E8F
+  0210A006 x12   data: FF09FF0000000000 | FF0AFF0000000000 | FF0BFF0000000000
+  0218A006 x12   data: 002C002C002C002C
+  0220A006 x12   data: 8008000000000000
+  0618A001 x9    data: 0000000000220000
+  0628A001 x10   data: 001100800C000000
+  0810A000 x11   data: 01FE1400 | 01FE1800 | 01FE1C00
+  0A18A000 x2    data: 200948000251201E
+  0A18A001 x1    data: 
+  0A18A002 x2    data: 0000
+
+##### C. 29-bit address sweep: 1A 80 to 18DAxxF1, any 18DAF1xx reply
+> ATCAF1         -> 'STOPPED'
+> ATCP18         -> 'OK'
+> ATCRA18DAF1XX  -> 'OK'
+> ATAT0          -> 'OK'
+> ATST19         -> 'OK'
+  ** reply from 0x28: '18DAF1283000000000000000'
+  ** reply from 0x30: '18DAF130320000'
+  ** reply from 0x40: '18DAF140320000'
+  sweep done in 54s, modules replying: ['0x28', '0x30', '0x40']
+
+##### D. Framing variants to engine 0x10
+> ATAT1          -> 'OK'
+> ATST64         -> 'OK'
+> ATSHDA10F1     -> 'OK'
+> ATCRA18DAF110  -> 'OK'
+> ATCAF0         -> 'OK'
+> ATV1           -> 'OK'
+> 021A80         -> '18DAF110037F1A11'
+> 023E00         -> '18DAF110027E00'
+> 021081         -> 'NO DATA'
+> ATV0           -> 'OK'
+> ATCAF1         -> 'OK'
+> ATSP6          -> 'OK'
+> ATSH7E0        -> 'OK'
+> ATCRA7EX       -> 'OK'
+> 1A 80          -> 'NO DATA'
+> ATCAF0         -> 'OK'
+> ATV1           -> 'OK'
+> 021A80         -> 'NO DATA'
+> ATV0           -> 'OK'
+> ATCAF1         -> 'OK'
+
+##### E. K-line variants
+> ATSP5          -> 'OK'
+> ATKW0          -> 'OK'
+> ATIB10         -> 'OK'
+> ATSH8110F1     -> 'OK'
+> ATFI           -> 'BUS INIT: ERROR'
+> ATSHC133F1     -> 'OK'
+> ATFI           -> 'BUS INIT: ERROR'
+> ATSH8001F1     -> 'OK'
+> ATFI           -> 'BUS INIT: ERROR'
+> ATSH8111F1     -> 'OK'
+> ATFI           -> 'BUS INIT: ERROR'
+> ATSH8011F1     -> 'OK'
+> ATFI           -> 'BUS INIT: ERROR'
+> ATSH8012F1     -> 'OK'
+> ATFI           -> 'BUS INIT: ERROR'
+> ATSP4          -> 'OK'
+> ATIIA10        -> 'OK'
+> ATSH8010F1     -> 'OK'
+> ATSI           -> 'BUS INIT: ...ERROR'
+> ATIIA01        -> 'OK'
+> ATSH8001F1     -> 'OK'
+> ATSI           -> 'BUS INIT: ...ERROR'
+> ATIIA33        -> 'OK'
+> ATSH8033F1     -> 'OK'
+> ATSI           -> 'BUS INIT: ...ERROR'
+> ATSP0          -> 'OK'

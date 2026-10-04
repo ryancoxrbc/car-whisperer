@@ -1,0 +1,119 @@
+> ATZ            -> 'ELM327 v2.2'
+> ATE0           -> 'OK'
+> ATL0           -> 'OK'
+> ATS0           -> 'OK'
+> ATRV           -> '12.3V'
+> ATSP7          -> 'OK'
+> ATCP18         -> 'OK'
+> ATSHDA10F1     -> 'OK'
+> ATCRA18DAF110  -> 'OK'
+> ATCAF0         -> 'OK'
+> ATV1           -> 'OK'
+> ATH1           -> 'OK'
+> ATAT0          -> 'OK'
+> ATST64         -> 'OK'
+> ATCFC0         -> 'OK'
+
+##### engine ECU 0x10: session check
+> 023E00         -> '18DAF110027E00'
+  3E 00          -> 7E00  '~.'
+  22 F186        -> 62F18601  'b...'
+
+##### engine ECU 0x10: standard identification DIDs (default session)
+  F180 bootSwId       -> 62F180010158  'b....X'
+  F181 appSwId        -> 62F181010138  'b....8'
+  F182 appDataId      -> 62F182010157  'b....W'
+  F186 activeSession  -> 62F18601  'b...'
+  F187 sparePartNo    -> 62F187353139  'b..519'
+  F188 ecuSwNo        -> NEG 22 31 (requestOutOfRange)
+  F189 ecuSwVersion   -> NEG 22 31 (requestOutOfRange)
+  F18A supplierId     -> NEG 22 31 (requestOutOfRange)
+  F18B manufDate      -> NEG 22 31 (requestOutOfRange)
+  F18C ecuSerial      -> 62F18C<TRUNCATED SERIAL>  'b..<...>'
+  F190 VIN            -> 62F190202020  'b..   '
+  F191 ecuHwNo        -> NEG 22 31 (requestOutOfRange)
+  F192 supplierHwNo   -> 62F192494157  'b..IAW'
+  F193 supplierHwVer  -> 62F19300  'b...'
+  F194 supplierSwNo   -> 62F194383831  'b..881'
+  F195 supplierSwVer  -> 62F1950000  'b....'
+  F197 systemName     -> NEG 22 31 (requestOutOfRange)
+  F198 repairShopCode -> NEG 22 31 (requestOutOfRange)
+  F199 progDate       -> NEG 22 31 (requestOutOfRange)
+  F19D calibDate      -> NEG 22 31 (requestOutOfRange)
+  F19E ODX            -> NEG 22 31 (requestOutOfRange)
+  F1A0 fiat1          -> 62F1A0353139  'b..519'
+  F1A1 fiat2          -> NEG 22 31 (requestOutOfRange)
+  F1A2 fiat3          -> NEG 22 31 (requestOutOfRange)
+  F1A3 fiat4          -> NEG 22 31 (requestOutOfRange)
+  F1A4 fiat5          -> 62F1A4202020  'b..   '
+  F1A5 fiat6          -> 62F1A57A0702  'b..z..'
+
+##### engine ECU 0x10: OBD-mirror live data DIDs F4xx
+  F400 pid00 supported -> NEG 22 31 (requestOutOfRange)
+  F401 pid01 MIL/DTC  -> NEG 22 31 (requestOutOfRange)
+  F404 load           -> NEG 22 31 (requestOutOfRange)
+  F405 coolant        -> NEG 22 31 (requestOutOfRange)
+  F40B MAP            -> NEG 22 31 (requestOutOfRange)
+  F40C RPM            -> 62F40C0000  'b....'
+  F40D speed          -> NEG 22 31 (requestOutOfRange)
+  F40E timing         -> NEG 22 31 (requestOutOfRange)
+  F40F IAT            -> NEG 22 31 (requestOutOfRange)
+  F411 throttle       -> NEG 22 31 (requestOutOfRange)
+  F41C OBD std        -> NEG 22 31 (requestOutOfRange)
+  F41F runtime        -> NEG 22 31 (requestOutOfRange)
+  F442 ECU volt       -> NEG 22 31 (requestOutOfRange)
+
+##### engine ECU 0x10: DTCs (read only)
+  1901FF   count by mask FF       -> NEG 19 12 (subFunctionNotSupported)
+  190209   confirmed/testFailed   -> 5902CF01351448  'Y...5.H'
+  1902FF   all status             -> 5902CF013212  'Y...2.'
+  190A     supported DTCs         -> NEG 19 12 (subFunctionNotSupported)
+
+##### engine ECU 0x10: sweep DIDs F100-F1FF (read only), listing those that answer
+  F183 -> 62F183012020  'b...  '
+  F184 -> 62F184012020  'b...  '
+  F185 -> 62F185012020  'b...  '
+  F196 -> 62F196355346  'b..5SF'
+  sweep done in 104s, 4 extra DIDs
+
+##### other modules: 0x28, 0x30, 0x40 identification
+> ATSHDA28F1     -> 'OK'
+> ATCRA18DAF128  -> 'OK'
+  --- 0x28
+  3E 00  -> 7E00  '~.'
+  1A 80  -> NEG 1A 11 (serviceNotSupported)
+  F190   -> no response
+  F187   -> no response
+  F18C   -> no response
+  F191   -> NEG 22 31 (requestOutOfRange)
+  F194   -> 62F194424220  'b..BB '
+  F195   -> 62F1951213  'b....'
+  F197   -> NEG 22 31 (requestOutOfRange)
+  F18A   -> NEG 22 31 (requestOutOfRange)
+> ATSHDA30F1     -> 'OK'
+> ATCRA18DAF130  -> 'OK'
+  --- 0x30
+  3E 00  -> 7E00  '~.'
+  1A 80  -> NEG 1A 11 (serviceNotSupported)
+  F190   -> 62F1902020202020202020202020202020202020  'b..                 '
+  F187   -> 62F1873531393237303835202020  'b..51927085   '
+  F18C   -> 62F18C326820202020202020202020202020  'b..2h             '
+  F191   -> NEG 22 31 (requestOutOfRange)
+  F194   -> 62F1943236313134313134313741  'b..2611411417A'
+  F195   -> 62F1950003  'b....'
+  F197   -> NEG 22 31 (requestOutOfRange)
+  F18A   -> NEG 22 31 (requestOutOfRange)
+> ATSHDA40F1     -> 'OK'
+> ATCRA18DAF140  -> 'OK'
+  --- 0x40
+  3E 00  -> 7E00  '~.'
+  1A 80  -> NEG 1A 11 (serviceNotSupported)
+  F190   -> 62F190<VIN, 17 ASCII BYTES AS HEX>  'b..<VIN REDACTED>'
+  F187   -> 62F1873531393632343833202020  'b..51962483   '
+  F18C   -> 62F18C<SERIAL AS HEX>20202020202020  'b..<SERIAL>       '
+  F191   -> NEG 22 31 (requestOutOfRange)
+  F194   -> 62F1943238343230373434202020  'b..28420744   '
+  F195   -> 62F1950213  'b....'
+  F197   -> NEG 22 31 (requestOutOfRange)
+  F18A   -> NEG 22 31 (requestOutOfRange)
+> ATSP0          -> 'OK'

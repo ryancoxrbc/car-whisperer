@@ -1,0 +1,46 @@
+> ATZ            -> 'ELM327 v2.2'
+> ATE0           -> 'OK'
+> ATL0           -> 'OK'
+> ATS0           -> 'OK'
+> ATSP7          -> 'OK'
+> ATCP18         -> 'OK'
+> ATSHDA10F1     -> 'OK'
+> ATCRA18DAF110  -> 'OK'
+> ATCAF0         -> 'OK'
+> ATV1           -> 'OK'
+> ATH1           -> 'OK'
+> ATAT0          -> 'OK'
+> ATST64         -> 'OK'
+> ATFCSH18DA10F1 -> 'OK'
+> ATFCSD300000   -> 'OK'
+> ATFCSM1        -> 'OK'
+> ATCFC1         -> 'OK'
+> ATST28         -> 'OK'
+
+##### engine 0x10 DID sweep 1000-10FF
+  1000 -> 0000
+  1002 -> 0000
+  1003 -> 0066
+  1004 -> 007B
+  1008 -> 0003D252
+  1009 -> 004D
+  6 DIDs answered in 51s
+
+##### engine 0x10 DID sweep 2000-20FF
+  2000 -> 0010
+  2001 -> 15C3D6
+  2002 -> 000000
+  2003 -> 00
+  2004 -> 00
+  2005 -> 00
+  2006 -> 0000
+  2007 -> 000000
+  2008 -> 0003D239
+  2009 -> 0018
+  200A -> 2DE5
+  200B -> 0003CFC0
+  200C -> 0024
+  200F -> F5
+  2010 -> FFFFFFFF
+  15 DIDs answered in 50s
+> ATSP0          -> 'OK'

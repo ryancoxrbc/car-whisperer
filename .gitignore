@@ -1,0 +1,6 @@
+local/
+venv/
+.venv/
+__pycache__/
+*.egg-info/
+capture*.json

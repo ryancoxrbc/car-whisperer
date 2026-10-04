@@ -1,0 +1,32 @@
+> ATZ        -> 'ELM327 v2.2'
+> ATE0       -> 'OK'
+> ATL0       -> 'OK'
+> ATS0       -> 'OK'
+> ATH1       -> 'OK'
+> ATSTC8     -> 'OK'
+> ATAT1      -> 'OK'
+> ATRV       -> '12.4V'
+
+--- trying protocol 6: ISO 15765-4 CAN 11bit/500k
+> ATSP6      -> 'OK'
+> 0100       -> 'NO DATA'
+
+--- trying protocol 5: ISO 14230-4 KWP fast init
+> ATSP5      -> 'OK'
+> 0100       -> 'BUS INIT: ERROR'
+
+--- trying protocol 4: ISO 14230-4 KWP 5-baud
+> ATSP4      -> 'OK'
+> 0100       -> 'BUS INIT: ...ERROR'
+
+--- trying protocol 3: ISO 9141-2
+> ATSP3      -> 'OK'
+> 0100       -> 'BUS INIT: ...ERROR'
+
+--- trying protocol 8: ISO 15765-4 CAN 11bit/250k
+> ATSP8      -> 'OK'
+> 0100       -> 'CAN ERROR'
+
+No ECU response on any protocol.
+> ATRV       -> '12.4V'
+> ATSP0      -> 'OK'

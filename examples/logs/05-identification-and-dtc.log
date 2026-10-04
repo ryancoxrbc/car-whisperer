@@ -1,0 +1,93 @@
+> ATZ            -> 'ELM327 v2.2'
+> ATE0           -> 'OK'
+> ATL0           -> 'OK'
+> ATS0           -> 'OK'
+> ATRV           -> '12.3V'
+> ATSP7          -> 'OK'
+> ATCP18         -> 'OK'
+> ATSHDA10F1     -> 'OK'
+> ATCRA18DAF110  -> 'OK'
+> ATCAF0         -> 'OK'
+> ATV1           -> 'OK'
+> ATH1           -> 'OK'
+> ATAT0          -> 'OK'
+> ATST64         -> 'OK'
+> ATFCSH18DA10F1 -> 'OK'
+> ATFCSD300000   -> 'OK'
+> ATFCSM1        -> 'OK'
+> ATCFC1         -> 'OK'
+
+##### engine 0x10, adapter hardware flow control (3-byte FC): VIN test
+> 0322F190       -> '18DAF110101462F190202020\n18DAF1102120202020202020\n18DAF1102220202020202020'
+  F190 -> 62F1902020202020202020202020202020202020  'b..                 '  multiframe: (20, 20)
+
+##### engine 0x10 identification
+  F187 sparePartNo    -> 62F1873531393236363930202020  'b..51926690   '
+  F18C ecuSerial      -> 62F18C<SERIAL AS HEX>202020202020  'b..<SERIAL>      '
+  F190 VIN            -> 62F1902020202020202020202020202020202020  'b..                 '
+  F192 supplierHwNo   -> 62F1924941573553464857343035  'b..IAW5SFHW405'
+  F194 supplierSwNo   -> 62F1943838314157323345202020  'b..881AW23E   '
+  F196 ecuName        -> 62F196355346394147  'b..5SF9AG'
+  F1A0 fiatA0         -> 62F1A035313932363639302020202020202020202020202020202020202020494157355346485734303500383831415732334520202000003553463941477A070208E0  'b..51926690                    IAW5SFHW405.881AW23E   ..5SF9AGz....'
+  F1A4 fiatA4         -> 62F1A4202020202020  'b..      '
+  F1A5 fiatA5         -> 62F1A57A070208E0  'b..z....'
+  F183 F183           -> 62F18301202020202020202020130415  'b...         ...'
+  F184 F184           -> 62F18401202020202020202020130415  'b...         ...'
+  F185 F185           -> 62F18501202020202020202020130415  'b...         ...'
+  F180 bootSwId       -> 62F18001015809050C0000000000000002  'b....X...........'
+  F181 appSwId        -> 62F1810101383831412020202020200002  'b....881A      ..'
+  F182 appDataId      -> 62F1820101573233452020202020200002  'b....W23E      ..'
+  F193 supplierHwVer  -> 62F19300  'b...'
+  F195 supplierSwVer  -> 62F1950000  'b....'
+
+##### engine 0x10 fault codes (read only)
+  1902FF   all DTCs, any status     -> 5902CF013212400560164005601740013812400325024005006440050068400579624003401140034015400340624003356240C4058640C4058240C4058140C40562400201114002011240020113400202114002021240020213400203114002031240020313400204114002041240  'Y...2.@.`.@.`.@.8.@.%.@..d@..h@.yb@.@.@.@.@.@b@.5b@...@...@...@..b@...@...@...@...@...@...@...@...@...@...@...@'
+      statusAvailabilityMask=CF
+      P0132-12  status 40 ['notCompletedThisCycle']
+      P0560-16  status 40 ['notCompletedThisCycle']
+      P0560-17  status 40 ['notCompletedThisCycle']
+      P0138-12  status 40 ['notCompletedThisCycle']
+      P0325-02  status 40 ['notCompletedThisCycle']
+      P0500-64  status 40 ['notCompletedThisCycle']
+      P0500-68  status 40 ['notCompletedThisCycle']
+      P0579-62  status 40 ['notCompletedThisCycle']
+      P0340-11  status 40 ['notCompletedThisCycle']
+      P0340-15  status 40 ['notCompletedThisCycle']
+      P0340-62  status 40 ['notCompletedThisCycle']
+      P0335-62  status 40 ['notCompletedThisCycle']
+      U0405-86  status 40 ['notCompletedThisCycle']
+      U0405-82  status 40 ['notCompletedThisCycle']
+      U0405-81  status 40 ['notCompletedThisCycle']
+      U0405-62  status 40 ['notCompletedThisCycle']
+      P0201-11  status 40 ['notCompletedThisCycle']
+      P0201-12  status 40 ['notCompletedThisCycle']
+      P0201-13  status 40 ['notCompletedThisCycle']
+      P0202-11  status 40 ['notCompletedThisCycle']
+      P0202-12  status 40 ['notCompletedThisCycle']
+      P0202-13  status 40 ['notCompletedThisCycle']
+      P0203-11  status 40 ['notCompletedThisCycle']
+      P0203-12  status 40 ['notCompletedThisCycle']
+      P0203-13  status 40 ['notCompletedThisCycle']
+      P0204-11  status 40 ['notCompletedThisCycle']
+      P0204-12  status 40 ['notCompletedThisCycle']
+  190209   confirmed / testFailed   -> 5902CF01351448  'Y...5.H'
+      statusAvailabilityMask=CF
+      P0135-14  status 48 ['confirmed', 'notCompletedThisCycle']
+  190204   pending                  -> 5902CF  'Y..'
+      statusAvailabilityMask=CF
+  190208   confirmed                -> 5902CF01351448  'Y...5.H'
+      statusAvailabilityMask=CF
+      P0135-14  status 48 ['confirmed', 'notCompletedThisCycle']
+
+##### engine 0x10 live: RPM DID again, plus a few MM-typical ranges
+  F40C -> 62F40C0000  'b....'
+  0100 -> NEG 22 31 (requestOutOfRange)
+  0101 -> NEG 22 31 (requestOutOfRange)
+  0102 -> NEG 22 31 (requestOutOfRange)
+  1000 -> 6210000000  'b....'
+  2000 -> 6220000010  'b ...'
+  2001 -> 62200115C3D6  'b ....'
+  0001 -> NEG 22 31 (requestOutOfRange)
+  0010 -> NEG 22 31 (requestOutOfRange)
+  0020 -> NEG 22 31 (requestOutOfRange)
+> ATSP0          -> 'OK'
